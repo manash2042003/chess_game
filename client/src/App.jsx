@@ -18,7 +18,9 @@ function App() {
   const chessRef = useRef(new Chess())
 
   useEffect(() => {
-    const s = io(SERVER_URL, { transports: ['websocket', 'polling'] })
+    // Prefer polling first to avoid websocket handshake issues on some hosts,
+    // then upgrade to websocket when available
+    const s = io(SERVER_URL, { transports: ['polling', 'websocket'] })
     setSocket(s)
     s.on('connect', () => setStatus('Connected'))
     s.on('connect_error', (err) => setStatus(`Connect error: ${err?.message || err}`))
