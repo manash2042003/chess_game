@@ -1,0 +1,17 @@
+# dependencies
+client/node_modules/
+server/node_modules/
+
+# builds
+client/dist/
+
+# logs & env
+*.log
+npm-debug.log*
+.DS_Store
+.env
+client/.env
+
+# misc
+.vscode/
+
